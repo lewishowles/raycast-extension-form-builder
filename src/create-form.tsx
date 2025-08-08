@@ -1,4 +1,4 @@
-import { Action, ActionPanel, Clipboard, Form, Toast, showToast } from "@raycast/api";
+import { Action, ActionPanel, Clipboard, Detail, Form, Toast, showToast, useNavigation } from "@raycast/api";
 import { useForm } from "@raycast/utils";
 
 interface FormBuilderFormValues {
@@ -40,8 +40,8 @@ export default function Command() {
 	/**
 	 * Determine if a given variable is a string, and non-empty.
 	 *
-	 * @param  {mixed}  variable
-	 *     The variable to test.
+	 * @param	{mixed}	variable
+	 *		 The variable to test.
 	 */
 	//function isNonEmptyString(variable: unknown): variable is string {
 	//	return typeof variable === "string" && variable !== "";
@@ -52,11 +52,28 @@ export default function Command() {
 			actions={
 				<ActionPanel>
 					<Action.SubmitForm title="Generate Form" onSubmit={handleSubmit} />
+					<Action.Push title="View Shortcut Guide" target={<ShortcutGuide />} />
 				</ActionPanel>
 			}
 		>
 			<Form.Description text="Enter your configuration to generate a form." />
 			<Form.TextArea title="Configuration" {...itemProps.configuration} />
+			<Form.Description text="View the Shortcut Guide in Actions." />
 		</Form>
+	);
+}
+
+function ShortcutGuide() {
+	const { pop } = useNavigation();
+
+	return (
+		<Detail
+			markdown="Shortcut guide"
+			actions={
+				<ActionPanel>
+					<Action title="Back to Form" onAction={pop} />
+				</ActionPanel>
+			}
+		/>
 	);
 }
