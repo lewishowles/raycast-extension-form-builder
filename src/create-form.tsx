@@ -77,3 +77,10 @@ function ShortcutGuide() {
 		/>
 	);
 }
+
+// TODO: Add shortcut guide
+// TODO: Set a default form as an example
+// TODO: Generate form on primary action
+// TODO: Add validation for each line, ensuring that each has a NAME
+// TODO: Store previous form in storage
+// TODO: Add actions for quickly generating new fields (e.g. Add new textarea)
