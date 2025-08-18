@@ -57,7 +57,7 @@ export default function Command() {
 			}
 		>
 			<Form.Description text="Enter your configuration to generate a form. Each line represents a different field in the form." />
-			<Form.TextArea title="Configuration" {...itemProps.configuration} />
+			<Form.TextArea title="Configuration" defaultValue="Your name@your_name?Your name will only be used to identify your account" storeValue={true} {...itemProps.configuration} />
 			<Form.Description text="View the Shortcut Guide in Actions." />
 		</Form>
 	);
