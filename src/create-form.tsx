@@ -1,5 +1,6 @@
 import { Action, ActionPanel, Clipboard, Detail, Form, Toast, showToast, useNavigation } from "@raycast/api";
 import { useForm } from "@raycast/utils";
+import generateForm from "./generate-form";
 import standardiseConfiguration from "./standardise-configuration";
 
 interface FormBuilderFormValues {
@@ -17,14 +18,10 @@ export default function Command() {
 				return;
 			}
 
-			console.log(formValues);
-
 			const standardisedConfiguration = standardiseConfiguration(formValues.configuration);
-			//const form = generateForm(standardisedConfiguration);
+			const form = generateForm(standardisedConfiguration);
 
-			console.log(standardisedConfiguration);
-
-			//await Clipboard.copy(form);
+			await Clipboard.copy(form);
 
 			showToast({
 				style: Toast.Style.Success,
@@ -51,7 +48,7 @@ export default function Command() {
 			}
 		>
 			<Form.Description text="Enter your configuration to generate a form. Each line represents a different field in the form." />
-			<Form.TextArea title="Configuration" defaultValue="Your name@your_name?Your name will only be used to identify your account" storeValue={true} {...itemProps.configuration} />
+			<Form.TextArea title="Configuration" storeValue={true} {...itemProps.configuration} />
 			<Form.Description text="View the Shortcut Guide in Actions." />
 		</Form>
 	);

@@ -1,18 +1,6 @@
+import { FieldConfiguration } from "./types";
 import { isNonEmptyString } from "./helpers";
 import { tokenRegex, tokenMap, inputMap } from "./form-tokens";
-
-type FieldConfiguration = {
-	label: string,
-	type?: string,
-	name?: string,
-	help?: string,
-	placeholder?: string,
-	prefix?: string,
-	prefix_icon?: string,
-	suffix?: string,
-	suffix_icon?: string,
-	id?: string,
-}
 
 /**
  * Convert the user's input into a standardised configuration, which can
@@ -23,7 +11,7 @@ type FieldConfiguration = {
  */
 export default function standardiseConfiguration(input: string) {
 	if (!isNonEmptyString(input)) {
-		return "";
+		return [];
 	}
 
 	// Start by splitting our configuration, expecting one input per line.
@@ -71,5 +59,4 @@ export default function standardiseConfiguration(input: string) {
 
 		return field;
 	});
-
 }
