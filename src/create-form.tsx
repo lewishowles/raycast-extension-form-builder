@@ -1,5 +1,6 @@
 import { Action, ActionPanel, Clipboard, Detail, Form, Toast, showToast, useNavigation } from "@raycast/api";
 import { useForm } from "@raycast/utils";
+import standardiseConfiguration from "./standardise-configuration";
 
 interface FormBuilderFormValues {
 	configuration: string;
@@ -18,34 +19,27 @@ export default function Command() {
 
 			console.log(formValues);
 
-			//const snippet = generateSnippet(formValues.title, formValues.prefix, formValues.code);
+			const standardisedConfiguration = standardiseConfiguration(formValues.configuration);
+			//const form = generateForm(standardisedConfiguration);
 
-			//await Clipboard.copy(snippet);
+			console.log(standardisedConfiguration);
 
-			//showToast({
-			//	style: Toast.Style.Success,
-			//	title: "Snippet copied",
-			//	message: "You can now paste it into the appropriate file.",
-			//});
+			//await Clipboard.copy(form);
+
+			showToast({
+				style: Toast.Style.Success,
+				title: "Form copied",
+				message: "You can now paste it into your component.",
+			});
 		},
-		//validation: {
-		//	configuration: value => {
-		//		if (!value) {
-		//			return "Please enter the configuration to convert";
-		//		}
-		//	},
-		//},
+		validation: {
+			configuration: value => {
+				if (!value) {
+					return "Please enter a configuration";
+				}
+			},
+		},
 	});
-
-	/**
-	 * Determine if a given variable is a string, and non-empty.
-	 *
-	 * @param	{mixed}	variable
-	 *		 The variable to test.
-	 */
-	//function isNonEmptyString(variable: unknown): variable is string {
-	//	return typeof variable === "string" && variable !== "";
-	//}
 
 	return (
 		<Form
