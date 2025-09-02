@@ -1,6 +1,6 @@
 # Form builder
 
-Quickly create a form that uses `form-wrapper` and `form-field` from @lewishowles/components with text-based inputs and shortcuts.
+Quickly create a form that uses `form-wrapper` and `form-field` from [`@lewishowles/components`](https://github.com/lewishowles/components) with text-based inputs and shortcuts.
 
 For example, the following configuration:
 
